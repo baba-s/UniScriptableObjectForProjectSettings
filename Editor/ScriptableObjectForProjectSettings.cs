@@ -27,7 +27,7 @@ namespace Kogane
 		/// 指定された .asset から ScriptableObject のインスタンスを読み込んで返します
 		/// .asset が存在しない場合は ScriptableObject のインスタンスを新規作成して返します
 		/// </summary>
-		private static T CreateOrLoadFromJson( string assetPath )
+		private static T CreateOrLoadFromAsset( string assetPath )
 		{
 			// 既にインスタンスを作成もしくは読み込み済みの場合はそれを返す
 			if ( m_instance != null ) return m_instance;
@@ -80,7 +80,7 @@ namespace Kogane
 
 			// ScriptableObject のインスタンスを新規作成もしくは .asset から読み込む
 			// ScriptableObject の GUI を表示する SettingsProvider を作成する
-			var instance         = CreateOrLoadFromJson( assetPath );
+			var instance         = CreateOrLoadFromAsset( assetPath );
 			var serializedObject = new SerializedObject( instance );
 			var keywords         = SettingsProvider.GetSearchKeywordsFromSerializedObject( serializedObject );
 			var editor           = Editor.CreateEditor( instance );
